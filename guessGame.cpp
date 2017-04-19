@@ -6,7 +6,7 @@
 int getRand(int min, int max)
 {
 	static const double fraction = 1.0 / (static_cast<double>(RAND_MAX) + 1.0);
-	
+
 	return static_cast<int>(rand() * fraction * (max - min + 1) + min);
 }
 
@@ -19,7 +19,7 @@ bool getPlay()
 		std::cout << "keep playing? [y/n]" << '\n';
 		std::cin >> play;
 		std::cin.ignore(32767, '\n');
-		
+
 		if(play == 'y')
 			return true;
 		else if(play == 'n')
@@ -36,16 +36,16 @@ int main()
 	do
 	{
 		std::cout << "I'm thinking of a number from 1 to 100" << '\n';
-		
+
 		int target = getRand(1, 2);
 		int guess(0);
-		
+
 		//game loop
 		for(int attempt = 0; attempt <= 7; ++attempt)
 		{
 			std::cout << "guess #" << attempt << ": ";
 			std::cin >> guess;
-			
+
 			//error correction for non integer input
 			if (std::cin.fail())
 				{
@@ -53,8 +53,8 @@ int main()
 					std::cin.ignore(32767, '\n');
 					std::cout << "INVALID INPUT" << '\n';
 				}
-				
-			//checks if the guesd is correct
+
+			//checks if the guess is correct
 			else if(guess < target)
 				std::cout << "too low" << '\n';
 			else if(guess > target)
@@ -64,18 +64,18 @@ int main()
 					std::cout << "YOU WIN!" << '\n';
 					break;
 				}
-			
+
 			//let's player know they lost after 7 attempts
 			else if(attempt == 7)
 				std::cout << "You loose" << '\n';
 		}
-	
+
 		play = getPlay();
-	
+
 	}
 	while(play);
-	
+
 	std::cout << "Thanks for playing!";
-	
+
 	return 0;
 }
