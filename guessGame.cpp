@@ -31,13 +31,13 @@ bool getPlay()
 
 int main()
 {
-	srand(time(0));
+    srand(static_cast<unsigned int>(time(0)));
 	bool play(true);
 	do
 	{
 		std::cout << "I'm thinking of a number from 1 to 100" << '\n';
 
-		int target = getRand(1, 2);
+		int target = getRand(1, 100);
 		int guess(0);
 
 		//game loop
@@ -66,7 +66,7 @@ int main()
 				}
 
 			//let's player know they lost after 7 attempts
-			else if(attempt == 7)
+			if(attempt == 7)
 				std::cout << "You loose" << '\n';
 		}
 
@@ -75,7 +75,7 @@ int main()
 	}
 	while(play);
 
-	std::cout << "Thanks for playing!";
+	std::cout << "Thanks for playing!" << '\n';
 
 	return 0;
 }
